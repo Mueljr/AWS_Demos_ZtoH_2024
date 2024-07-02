@@ -1,4 +1,4 @@
-Use Case: EBS Backup Volume Resources (Snapshots).
+**Use Case: EBS Backup Volume Resources (Snapshots).**
 
 This AWS Cloud Cost Optimization project focuses on creating a Lambda function that fetches all EBS snapshots, and filters the dormant and active snapshots.
 
