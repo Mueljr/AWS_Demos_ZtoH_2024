@@ -38,7 +38,9 @@ This ingress controller when created will create an ALB, and also, configure it 
 
 8. Finally Deploy the ALB Controller via Helm Chart
    a. Add Helm Repository - _helm repo add eks https://aws.github.io/eks-charts_
+   
    b. Update Helm Repository - _helm repo update eks_
+   
    c. Install Helm Chart - _helm install aws-load-balancer-controller eks/aws-load-balancer-controller \            
   -n kube-system \
   --set clusterName=<your-cluster-name> \
