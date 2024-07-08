@@ -1,3 +1,5 @@
+**STAGE 1**
+
 **(A) Install Kubectl and eksctl on your terminal**
 
 "kubectl" is a command line tool that grants you access to work with and play around with Kubernetes clusters.
