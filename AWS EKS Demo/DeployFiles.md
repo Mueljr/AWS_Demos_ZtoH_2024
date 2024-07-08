@@ -9,7 +9,7 @@ Ingress.yml files act as a resource that defines the rules for routing external 
 
 In this case, all configurations are described in one single yaml file as found on the official EKS repository on GitHub.
 If you were to do it personally, you could write everything down and save as one yaml source code file.
-This will aid in a seamless implementation of all four yaml file configuration via just a command line
+This will aid in a seamless implementation of all four yaml file configuration via just a command line.
 
 Command: _kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml_
 
