@@ -1,4 +1,4 @@
-**Create Cluster on your terminal**
+**Create Cluster from your Terminal**
 
 In most cases, in the production environment, you would be required to create clusters in bulk, and it would be tedious and stressful to create one after the other on the UI.
 
