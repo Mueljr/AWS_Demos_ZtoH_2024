@@ -7,6 +7,7 @@ AWS CLI is a command line tool that is pertinent for you working with all AWS se
 
 **(C) Authenticate your AWS Account on your terminal**
 Command: _aws configure_
+
 Put in all your AWS account details to link your accout to your terminal to automate and effect changes from that environment.
 
 **For steps A & B, the official AWS documentations can be looked into to access the right commands as your device demands.
