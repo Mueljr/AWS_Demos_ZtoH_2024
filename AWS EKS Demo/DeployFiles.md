@@ -12,4 +12,5 @@ If you were to do it personally, you could write everything down and save as one
 This will aid in a seamless implementation of all four yaml file configuration via just a command line
 
 Command: _kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/examples/2048/2048_full.yaml_
-If stored in your personal repository or any other one: Kubectl apply -f _yamlfile link_
+
+If stored in your personal repository or any other one: _kubectl apply -f _yamlfile link__
