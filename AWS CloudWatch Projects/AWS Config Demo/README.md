@@ -2,7 +2,7 @@ This project to demonstrate the purpose of compliance of resources as used in or
 
 **DEMO: An organization has EC2 instance monitoring checked as part of their mandatory policies.**
 
-**Implementation of AWS Config Resource to ensure all EC2 Instances in the organization have their monitoring enabled by verifying if it is in a compliant state or not**
+**Implementation of AWS Config Resource to ensure all EC2 Instances in the organization have their monitoring enabled by verifying if it is in a compliant state or not.**
 
 Demo implemented by:
 
@@ -15,4 +15,5 @@ Demo implemented by:
 4. AWS CloudWatch metrics and alarms to notify the DevOps engineers if an EC2 instance has gone non-compliant.
 
 **Permissions granted for the Lambda Function includes CloudWatch Full Access, EC2 Full Access, Config_Rule, and CloudTrail Full Access.
+
 Manual monitoring of compliance rules (AWS Config) can also be checked on the "Resource Scope" arm of the Rules.
