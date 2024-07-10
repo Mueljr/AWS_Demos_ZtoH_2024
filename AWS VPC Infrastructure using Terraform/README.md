@@ -24,6 +24,6 @@ AWS Account is authenticated on CLI, and a new directory is created, with Visual
 **main.tf file contains all the necessary configurations for this set-up from creating a vpc to the entire set-up.**
 Terraform AWS Documentation + the UI referred to for structuring configurations on the CLI.
 
-**variable.tf file created to store the CIDR block variable**
+**variables.tf file created to store the CIDR block variable**
 
 **userdata1.sh and userdata2.sh files as specified for each instance, contains a simple html source file with a fictional instance ID stored in a local IP address. It is encoded as base64 in the Terraform config, and switches between both html pages when launched on the browser due to the load balancer at work, causing maximum availability.**
