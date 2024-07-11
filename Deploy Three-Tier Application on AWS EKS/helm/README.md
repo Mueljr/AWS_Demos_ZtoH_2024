@@ -10,18 +10,18 @@ Also, a few other yaml files for the backend, as well as for the Database tier.
 
 1. Create Namespace
 
-$ kubectl create ns <namespace>
+   $ kubectl create ns <namespace>
 
-2. Install Helm
+2. Switch to "helm" directory and Install helm
 
-$ helm install <helmreleasename> --namespace <namespace> .
+   $ helm install <helmreleasename> --namespace <namespace> .
 
 3. Verify Pods are running
 
-kubectl get pods -n <namespace>
+   kubectl get pods -n <namespace>
 
 4. Apply ingress.yml configuration
 
-kubectl apply -f ingress.yaml
+   kubectl apply -f ingress.yaml
 
 5. Finally wait for the load balancer to be on active state on the UI, and launch Ingress controller's DNS on browser to access Stan Robot Shop's application.
