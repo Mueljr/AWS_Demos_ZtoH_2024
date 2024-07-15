@@ -4,7 +4,7 @@
 
 **About App:** Stan's Robot Shop is a sample microservice application designed as a sandbox to test and learn containerized application orchestration and monitoring techniques.
 
-The application deployed has 12 microservices running, and is copped from IBM's Instana.
+The application deployed has 12 microservices running, and is copped from IBM's Instana Project.
 
 After initial configurations are done, an **helm chart** is employed for better organization and management.
 
