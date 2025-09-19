@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serverless Messages Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f9f9f9;
+    }
+    h1 { color: #333; }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 0.6rem;
+      font-size: 1rem;
+      margin: 0.3rem 0;
+    }
+    button {
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .output {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f1f1f1;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Serverless Messages</h1>
+    
+    <h3>Send a Message</h3>
+    <input id="messageInput" type="text" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+
+    <h3>Get Latest Message</h3>
+    <button onclick="getMessage()">Fetch</button>
+
+    <div class="output" id="output">Latest message will appear here...</div>
+  </div>
+
+  <script>
+    // Replace with your API base URL
+    const API_BASE = "https://rkhf5z0uel.execute-api.us-east-1.amazonaws.com/default";
+
+    async function sendMessage() {
+      const message = document.getElementById("messageInput").value;
+      if (!message) {
+        alert("Please type a message first.");
+        return;
+      }
+
+      const response = await fetch(`${API_BASE}/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+
+      const data = await response.json();
+      document.getElementById("output").innerText = "Message saved! ID: " + data.id;
+    }
+
+    async function getMessage() {
+      const response = await fetch(`${API_BASE}/messages`);
+      const data = await response.json();
+      document.getElementById("output").innerText =
+        "Latest: " + data.latest_message.message + " (id: " + data.latest_message.id + ")";
+    }
+  </script>
+</body>
+</html>
