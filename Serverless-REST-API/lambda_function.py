@@ -1,42 +1,54 @@
 import json
 import boto3
-import os
+import uuid
+from boto3.dynamodb.conditions import Key
 
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table(os.environ['TABLE_NAME'])  # Environment variable: TABLE_NAME
+dynamodb = boto3.resource("dynamodb")
+table = dynamodb.Table("Messages")  # change to your DynamoDB table name
+
 
 def lambda_handler(event, context):
-    http_method = event.get("httpMethod")
+    method = event.get("httpMethod", "")
 
-    if http_method == "POST":
-        # Parse request body
+    if method == "OPTIONS":
+        return build_response(200, {"message": "CORS preflight OK"})
+
+    elif method == "POST":
         body = json.loads(event.get("body", "{}"))
-        message = body.get("message", "No message provided")
+        message = body.get("message", "")
 
-        # Always include the partition key
-        item = {
-            "id": "latest",        # Required key
-            "message": message
-        }
+        if not message:
+            return build_response(400, {"error": "Message is required"})
 
-        table.put_item(Item=item)
+        message_id = str(uuid.uuid4())
+        table.put_item(Item={"id": message_id, "message": message})
 
-        return {
-            "statusCode": 200,
-            "body": json.dumps({"status": "saved", "message": message})
-        }
+        return build_response(200, {
+            "message": "Message saved!",
+            "id": message_id
+        })
 
-    elif http_method == "GET":
-        response = table.get_item(Key={"id": "latest"})
-        item = response.get("Item", {})
+    elif method == "GET":
+        # fetch latest message (assuming 'id' is your partition key)
+        response = table.scan(Limit=1)  # quick demo, not production-efficient
+        items = response.get("Items", [])
 
-        return {
-            "statusCode": 200,
-            "body": json.dumps(item)
-        }
+        if not items:
+            return build_response(200, {"latest_message": None})
+
+        return build_response(200, {"latest_message": items[-1]})
 
     else:
-        return {
-            "statusCode": 400,
-            "body": json.dumps({"error": "Unsupported method"})
-        }
+        return build_response(400, {"error": "Unsupported method"})
+
+
+def build_response(status_code, body):
+    return {
+        "statusCode": status_code,
+        "headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        },
+        "body": json.dumps(body)
+    }
